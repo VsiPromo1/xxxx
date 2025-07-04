@@ -4,9 +4,14 @@ import time
 import threading
 import json
 import os
+import requests  # додали бібліотеку для HTTP-запиту
 
 TOKEN = '7102389575:AAHMc_209ElVL5Qlv7-bLhCkMIiVD9T8Obw'
 bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
+
+# 🧹 ВАЖЛИВО: очищаємо webhook (Telegram дозволяє або webhook, або polling)
+requests.get(f'https://api.telegram.org/bot{TOKEN}/deleteWebhook')
+
 
 sponsor_channels = [
     '@Vsi_PROMO',

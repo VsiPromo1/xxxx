@@ -650,6 +650,9 @@ def auto_check_subscriptions():
 # Запускаємо фоновий потік перевірки підписок
 threading.Thread(target=auto_check_subscriptions, daemon=True).start()
 
-print("Бот запущено...")
-bot.remove_webhook()
-bot.infinity_polling()
+if __name__ == "__main__":
+    keep_alive()  # запускаємо веб-сервер для Heroku
+    print("Бот запущено...")
+    bot.remove_webhook()
+    bot.infinity_polling()
+    

@@ -627,4 +627,5 @@ def auto_check_subscriptions():
 threading.Thread(target=auto_check_subscriptions, daemon=True).start()
 
 print("Бот запущено...")
+bot.remove_webhook()
 bot.infinity_polling()

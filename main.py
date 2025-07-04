@@ -5,9 +5,6 @@ import threading
 import json
 import os
 
-from flask import Flask
-from threading import Thread
-
 TOKEN = '7102389575:AAHMc_209ElVL5Qlv7-bLhCkMIiVD9T8Obw'
 bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
 
@@ -17,28 +14,7 @@ sponsor_channels = [
 ]
 
 ADMIN_ID = 7262164512
-DATA_FILE = 'users_data.json'
-
-# --- Flask сервер для keep-alive ---
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "I'm alive!"
-
-def run():
-    app.run(host='0.0.0.0', port=8080)
-
-def keep_alive():
-    t = Thread(target=run)
-    t.start()
-
-# --- Точка входу ---
-if __name__ == "__main__":
-    keep_alive()  # запускаємо веб-сервер для пінгів
-    # тут запуск твого бота, наприклад:
-    bot.polling(none_stop=True)
-    
+DATA_FILE = 'users_data.json' 
 
 # Жарти для фарт-картки
 jokes = [
@@ -651,7 +627,6 @@ def auto_check_subscriptions():
 threading.Thread(target=auto_check_subscriptions, daemon=True).start()
 
 if __name__ == "__main__":
-    keep_alive()  # запускаємо веб-сервер для Heroku
     print("Бот запущено...")
     bot.remove_webhook()
     bot.infinity_polling()

@@ -21,7 +21,8 @@ sponsor_channels = [
     '@Vsi_PROMO',
     '@casinomania_official',
     '@Jackpot_Pulse',
-    '@gospodispin',
+    '@promo_ot_Alffa',
+    '@PROMOKODE_FS',
     '@Lucky_Club_777',
     '@PROMO_OT_SAINT'
 ]

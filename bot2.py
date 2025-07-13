@@ -20,11 +20,7 @@ bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
 sponsor_channels = [
     '@Vsi_PROMO',
     '@casinomania_official',
-    '@Jackpot_Pulse',
-    '@promo_ot_Alffa',
-    '@PROMOKODE_FS',
-    '@Lucky_Club_777',
-    '@PROMO_OT_SAINT'
+    '@Jackpot_Pulse'
 ]
 ADMIN_GROUP_ID = -1002729364136
 ADMIN_ID = 7262164512

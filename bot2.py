@@ -18,7 +18,7 @@ TOKEN = '7102389575:AAGNcHAzhyut7t-pL0CO0U8UFw3UtDaExlw'
 bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
 
 sponsor_channels = [
-    '@Vsi_PROMO',
+    '@Grinch_v_Azarti',
     '@casinomania_official',
     '@Jackpot_Pulse'
 ]

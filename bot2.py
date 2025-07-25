@@ -18,8 +18,10 @@ TOKEN = '7102389575:AAGNcHAzhyut7t-pL0CO0U8UFw3UtDaExlw'
 bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
 
 sponsor_channels = [
-    '@Grinch_v_Azarti',
+    '@Vsi_PROMO',
     '@casinomania_official',
+    '@Lucky_Club_777',
+    '@Alfa_Casino_Life',
     '@Jackpot_Pulse'
 ]
 ADMIN_GROUP_ID = -1002729364136

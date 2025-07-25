@@ -19,7 +19,7 @@ bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
 
 sponsor_channels = [
     '@Vsi_PROMO',
-    '@casinomania_official',
+    '@casinomania1',
     '@Lucky_Club_777',
     '@Alfa_Casino_Life',
     '@Jackpot_Pulse'

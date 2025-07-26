@@ -5,6 +5,62 @@ import threading
 import json
 import os
 import re
+
+# Функція для автоматичного виправлення деяких стандартних проблем в JSON
+def fix_json(json_string):
+    # 1. Заміняємо неправильний знак "=" на ":"
+    json_string = re.sub(r'(\w+)\s*=\s*', r'"\1": ', json_string)
+
+    # 2. Додаємо лапки навколо незахищених ключів
+    json_string = re.sub(r'(\w+):', r'"\1":', json_string)
+
+    # 3. Видаляємо зайві коми перед закриттям дужок
+    json_string = re.sub(r',\s*}', '}', json_string)
+    json_string = re.sub(r',\s*]', ']', json_string)
+
+    return json_string
+
+# Функція для безпечного завантаження JSON з автоматичним виправленням
+def load_json_safe(file_path):
+    if not os.path.exists(file_path):
+        print(f"Файл {file_path} не знайдено. Створено порожній файл.")
+        return {}  # Якщо файл не знайдено, повертаємо порожні дані
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            raw_data = f.read()
+            # Фіксуємо помилки в JSON
+            fixed_data = fix_json(raw_data)
+            data = json.loads(fixed_data)  # Завантажуємо виправлений JSON
+        return data
+    except json.JSONDecodeError as e:
+        print(f"Помилка при завантаженні файлу {file_path}: {e.msg}")
+        print(f"Лінія: {e.lineno}, Стовпець: {e.colno}")
+        return {}
+    except Exception as e:
+        print(f"Помилка при завантаженні файлу {file_path}: {str(e)}")
+        return {}
+
+# Функція для безпечного збереження JSON
+def save_json_safe(file_path, data):
+    try:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)  # Записуємо виправлені дані в файл
+        print(f"Дані успішно збережено в {file_path}")
+    except Exception as e:
+        print(f"Помилка при збереженні файлу {file_path}: {str(e)}")
+
+# Шляхи до файлів
+TASK_FILE = 'task.json'
+DATA_FILE = 'users_data.json'
+
+# Завантажуємо файли з автоматичним виправленням помилок
+task_data = load_json_safe(TASK_FILE)
+users_data = load_json_safe(DATA_FILE)
+
+# Якщо потрібно зберегти виправлені дані:
+save_json_safe(DATA_FILE, users_data)
+
 daily_top5 = []
 TASK_FILE = 'task.json'
 current_task = "❗️Завдання ще не встановлено."
